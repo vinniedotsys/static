@@ -1,4 +1,4 @@
-from testnode import *
+from textnode import *
 
 
 def main():
