@@ -18,8 +18,7 @@ class HtmlNode():
 
 
     def __repr__(self) -> str:
-        props = self.props_to_html()
-        return f"HtmlNode({self.tag}, {self.value}, {self.children}, {props})"
+        return f"HtmlNode({self.tag}, {self.value}, children: {self.children}, {self.props})"
 
 class LeafNode(HtmlNode):
     def __init__(self, tag=None, value=None, props=None) -> None:
