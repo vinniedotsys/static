@@ -1,6 +1,6 @@
 import unittest
 
-from textnode import TextNode, TextType, text_node_to_html_node, split_nodes_delimiter
+from textnode import TextNode, TextType, text_node_to_html_node, split_nodes_delimiter, extract_markdown_images, extract_markdown_links
 
 
 class TestTextNode(unittest.TestCase):
@@ -24,8 +24,24 @@ class TestTextNode(unittest.TestCase):
         node2 = TextNode("Google", TextType.IMAGE, "https://www.google.com")  
         self.assertNotEqual(node, node2) 
     
+    def test_extract_markdown_images(self):
+        matches = extract_markdown_images(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png)"
+        )
+        self.assertListEqual([("image", "https://i.imgur.com/zjjcJKZ.png")], matches)
 
-
+        
+    def test_extract_markdown_links(self):
+        matches = extract_markdown_links(
+            "This is text with a [link](https://boot.dev) and [another link](https://wikipedia.org)"
+        )
+        self.assertListEqual(
+            [
+                ("link", "https://boot.dev"),
+                ("another link", "https://wikipedia.org"),
+            ],
+            matches,
+        )
 
 class TestTextNodeToHTMLNode(unittest.TestCase):
     def test_text(self):
