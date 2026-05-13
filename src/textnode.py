@@ -124,4 +124,14 @@ def split_nodes_link(old_nodes):
         if original_text != "":
             new_nodes.append(TextNode(original_text, TextType.PLAIN))
     return new_nodes
-        
+
+
+def text_to_textnodes(text):
+    nodes = [TextNode(text, TextType.PLAIN)]
+    delimitters = [(TextType.BOLD, "**"), (TextType.ITALIC, "_"), (TextType.CODE, "`")]
+    nodes = split_nodes_image(nodes)
+    nodes = split_nodes_link(nodes)
+    for sign in delimitters:
+        nodes = split_nodes_delimiter(nodes, sign[1], sign[0])
+
+    return nodes
