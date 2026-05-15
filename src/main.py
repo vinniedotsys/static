@@ -1,10 +1,8 @@
 from textnode import *
-
+from copy_static import generate_public_dir 
 
 def main():
 
-    test = TextNode("wesh", TextType.ITALIC_TEXT)
-    print(test)
-
+    generate_public_dir()
 
 main()
