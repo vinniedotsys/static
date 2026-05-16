@@ -47,8 +47,8 @@ def generate_page(from_path, template_path, dest_path, basepath):
     content = hnode.to_html()
     template = template.replace("{{ Title }}", title)
     template = template.replace("{{ Content }}", content)
-    template = template.replace('href="/', f'href="{basepath}')
-    template = template.replace('src="/', f'src="{basepath}')
+#    template = template.replace('href="/', f'href="{basepath}')
+#    template = template.replace('src="/', f'src="{basepath}')
     if not os.path.exists(os.path.dirname(dest_path)):
         os.makedirs(os.path.dirname(dest_path))
     with open(dest_path, "w") as f:
